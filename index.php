@@ -1,5 +1,5 @@
 <?php
-include "includes/db.php";
+    include "includes/functions.php";
 ?>
 
 <!DOCTYPE html>
@@ -102,59 +102,11 @@ include "includes/db.php";
             <div class="container">
                 <div class="col-lg-8 col-lg-offset-2">
                     <h2>Analysis</h2>
-                   <?php
-    require_once('TwitterAPIExchange.php');
- 
-    /** Set access tokens here - see: https://dev.twitter.com/apps/ **/
-    $settings = array(
-        'oauth_access_token' => "820710517341847552-lOsQNExpWMUhqULPUFDecFj9ZUD9KSE",
-        'oauth_access_token_secret' => "vq4XvKUPPkLdrmXwnaXsxISTItvvwxHdtBllbV6cBuOcu",
-        'consumer_key' => "p0fphkbZaByFaAWY2yWzA4Ceh",
-        'consumer_secret' => "3eP67fWJSa0kgfaubAG0Sj2ryQSa4mehcXRH56DVd4y3nWBGUY"
-    );
-    $url = "https://api.twitter.com/1.1/statuses/user_timeline.json";
-    $requestMethod = "GET";
-    $getfield = '?screen_name=realdonaldtrump&count=3';
-    $twitter = new TwitterAPIExchange($settings);
-    $string = json_decode($twitter->setGetfield($getfield)
-            ->buildOauth($url, $requestMethod)
-            ->performRequest(),$assoc = TRUE);
-    
-    $result = 0;
-    
-    function strposa($haystack, $needles=array(), $offset=0) {
-        $chr = array();
-        foreach($needles as $needle) {
-                $res = strpos($haystack, $needle, $offset);
-                if ($res !== false) $chr[$needle] = $res;
-        }
-        if(empty($chr)) return false;
-        return min($chr);
-    }
-
-    foreach( $string as $items ) {
-        $checkString = strtolower($items['text']);
-        $checkArray = array("Week", "hallmark", "television");
-
-        if (strposa($checkString, $checkArray, 1)) {
-            echo "<center><b>KEYWORD FOUND: </b></center>";
-            $url = "http://gateway-a.watsonplatform.net/calls/text/TextGetTextSentiment?apikey=895f984e23f58d468f2ade064d1b92725e0dc725&text=".urlencode($items['text'])."&outputMode=json";
-            $curl = curl_init();
-            curl_setopt ($curl, CURLOPT_URL, $url);
-            curl_setopt($curl, CURLOPT_RETURNTRANSFER, 1);
-            $json = curl_exec ($curl);
-            json_decode($json);
-            curl_close ($curl);
-            $data = json_decode($json, true);
-            $result = $data['docSentiment']['score'];
-            echo "<i><center>". $items['text']."<br/>". $result. "<br /><hr> </center></i>";
-        } else {
-            echo "<i><center> FILTERED OUT A UNECESSARY TWEET BY THE DON <br /><hr></center></i>";
-        }
-        
-    }
-  
-?>
+                        <?php
+                            $tweet = new Functions();
+                            $tweet->getTable();
+                            $tweet->twitterAnalysis();
+                        ?>
                 </div>
             </div>
         </div>
@@ -211,4 +163,9 @@ include "includes/db.php";
 </body>
 
 </html>
+<?php
+   // $tweet = new Functions();
+    //$tweet->getTable();
+    
+?>
 
