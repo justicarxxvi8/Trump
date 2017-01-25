@@ -106,6 +106,7 @@
                             $tweet = new Functions();
                             $tweet->getTable();
                             $tweet->twitterAnalysis();
+                            $tweet->getTicker();
                         ?>
                 </div>
             </div>
