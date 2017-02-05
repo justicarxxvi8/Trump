@@ -13,7 +13,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>TRUMP SENTIMENT ANALYSISA</title>
+    <title>TRUMP SENTIMENT ANALYSIS</title>
 
     <!-- Bootstrap Core CSS -->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -74,7 +74,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-8 col-md-offset-2">
-                        <h1 class="brand-heading">TRUMP SENTIMENT ANALYSIS</h1>
+                        <h1 class="brand-heading">TRUMP SENTIMENT ANALYSISA</h1>
                         <p class="intro-text">A small webapp allowing for fast sentiment analysis tweets pertaining to businesses by President Trump.</p>
                         <a href="#about" class="btn btn-circle page-scroll">
                             <i class="fa fa-angle-double-down animated"></i>
